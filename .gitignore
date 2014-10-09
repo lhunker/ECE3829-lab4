@@ -1,6 +1,10 @@
 *
+!*/
+!*/**
 !*.v
 !*.ucf
-!ipcore_dir/*
 !*.xise 
-!*.gitignore
+!*.vhd
+!.gitignore
+/iseconfig/
+/_xmsgs/
