@@ -1,0 +1,6 @@
+*
+!*.v
+!*.ucf
+!ipcore_dir/*
+!*.xise 
+!*.gitignore
