@@ -33,12 +33,13 @@ module lab4(
     output [1:0] blu
     );
 	 
+	wire clk_25m, clk_100m;
 	wire[15:0] segin;
 	wire [4:0] xpos;
 	wire [3:0] ypos;
 	wire [7:0] rgb;
 	microblaze mcs (
-	  .Clk(clk), // input Clk
+	  .Clk(clk_100m), // input Clk
 	  .Reset(reset), // input Reset
 	  .UART_Rx(rx), // input UART_Rx
 	  .UART_Tx(tx), // output UART_Tx
@@ -49,23 +50,31 @@ module lab4(
 	  .GPI1_Interrupt() // output GPI1_Interrupt
 	);
 	
-	wire clk_25m, clk_10m;
+
 	dcm_25_10 dcm
 		(// Clock in ports
 		 .CLK_IN1(clk),      // IN
 		 // Clock out ports
 		 .CLK_OUT1(clk_25m),     // OUT
-		 .CLK_OUT2(clk_10m),     // OUT
+		 .CLK_OUT2(clk_100m),     // OUT
 		 // Status and control signals
 		 .RESET(reset));       // IN
 		 
-	seven_seg s1 (.in(segin), .seg(seg), .anodes(anode), .clk(clk_10m));
+	seven_seg s1 (.in(16'b0/*segin*/), .seg(seg), .anodes(anode), .clk(clk_25m));
 
 	wire [10:0] hcount;
 	wire [10:0] vcount;
 	wire blank;
 	vga_controller_640_60 vga1 (.rst(reset), .pixel_clk(clk_25m), .HS(HS), .VS(VS), .hcount(hcount), .vcount(vcount), .blank(blank));
 
-	//Add x, y to vga here
+	xytovga pattrngen (
+    .x(5'b0), 
+    .y(4'b0), 
+    .color(8'b00000011), 
+    .blank(blank), 
+    .rgbout({red, grn, blu}),
+	 .hcount(hcount),
+	 .vcount(vcount)
+    );
 
 endmodule

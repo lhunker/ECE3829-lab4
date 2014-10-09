@@ -57,7 +57,7 @@
 
 `timescale 1ps/1ps
 
-`define wait_lock @(posedge dut.clknetwork.pll_base_inst.LOCKED)
+`define wait_lock @(posedge dut.clknetwork.dcm_sp_inst.LOCKED)
 
 module dcm_25_10_tb ();
 

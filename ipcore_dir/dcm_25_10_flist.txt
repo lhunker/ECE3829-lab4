@@ -2,7 +2,6 @@
 _xmsgs\pn_parser.xmsgs
 dcm_25_10.asy
 dcm_25_10.gise
-dcm_25_10.sym
 dcm_25_10.ucf
 dcm_25_10.v
 dcm_25_10.veo
