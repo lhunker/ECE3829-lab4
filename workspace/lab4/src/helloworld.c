@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2009-2012 Xilinx, Inc.  All rights reserved.
+ *
+ * Xilinx, Inc.
+ * XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" AS A
+ * COURTESY TO YOU.  BY PROVIDING THIS DESIGN, CODE, OR INFORMATION AS
+ * ONE POSSIBLE   IMPLEMENTATION OF THIS FEATURE, APPLICATION OR
+ * STANDARD, XILINX IS MAKING NO REPRESENTATION THAT THIS IMPLEMENTATION
+ * IS FREE FROM ANY CLAIMS OF INFRINGEMENT, AND YOU ARE RESPONSIBLE
+ * FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE FOR YOUR IMPLEMENTATION.
+ * XILINX EXPRESSLY DISCLAIMS ANY WARRANTY WHATSOEVER WITH RESPECT TO
+ * THE ADEQUACY OF THE IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO
+ * ANY WARRANTIES OR REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE
+ * FROM CLAIMS OF INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ */
+
+/*
+ * helloworld.c: simple test application
+ *
+ * This application configures UART 16550 to baud rate 9600.
+ * PS7 UART (Zynq) is not initialized by this application, since
+ * bootrom/bsp configures it to baud rate 115200
+ *
+ * ------------------------------------------------
+ * | UART TYPE   BAUD RATE                        |
+ * ------------------------------------------------
+ *   uartns550   9600
+ *   uartlite    Configurable only in HW design
+ *   ps7_uart    115200 (configured by bootrom/bsp)
+ */
+
+#define BIN2BCD(bin)	(0x000000ff & ((bin % 10) | ((bin / 10) << 4)))
+
+#include <stdio.h>
+#include "platform.h"
+#include "xparameters.h"
+#include "xiomodule.h"
+
+void print(char *str);
+char inbyte();
+
+u32 bin2bcd(u32);
+
+int main()
+{
+    init_platform();
+
+    u32 data;
+    XIOModule gpo;	//channel 1 = position (xpos[4:0],ypos[3:0]), channel 2 = rgb (r[2:0], g[2:0], b[1:0]), channel 3 = 7-seg data (16 bits)
+    XIOModule gpi;	//switches (only the bottom 3 bits are used
+
+    data = XIOModule_Initialize(&gpi, XPAR_IOMODULE_0_DEVICE_ID);
+    data = XIOModule_Start(&gpi);	//initialize gpi
+
+    data = XIOModule_Initialize(&gpo, XPAR_IOMODULE_0_DEVICE_ID);
+    data = XIOModule_Start(&gpo);	//initialize gpo
+
+    char serial_in;	//character input from the serial
+    u32 xpos = 0, ypos = 0;	//coordinates of the block
+    u32 rgb = 0;	//rgb data
+
+    print("Brede Doerner, Lukas Hunker, 12th October 2014\n\r");
+
+    while(1)
+    {
+    	serial_in = inbyte();
+    	if((serial_in == '8') & (ypos > 0))
+    		ypos -= 1;	//raise the block if 8 is pressed (up arrow on the numpad)
+    	else if((serial_in == '2') & (ypos < 14))
+    		ypos += 1;	//lower the block if 2 is pressed (down arrow on the numpad)
+    	else if((serial_in == '6') & (xpos < 19))
+    		xpos += 1;	//move the block to the right when 6 is pressed (right arrow on the numpad)
+    	else if((serial_in == '4') & (xpos > 0))
+    		xpos -= 1;	//move the block to the left when 4 is pressed (left arrow on the numpad)
+
+    	data = ((xpos & 0x0000001f) << 4) | (ypos & 0x0000000f);	//combine xpos and ypos in the format gpo1 should output them in
+    	XIOModule_DiscreteWrite(&gpo, 1, data);	//output the coordinates to GPO1 to display the block
+
+    	data = BIN2BCD(xpos) << 8 | BIN2BCD(ypos);
+    	XIOModule_DiscreteWrite(&gpo, 3, data);	//output the coordinates to the GPO3 for display on the 7 segment displays
+
+    	data = XIOModule_DiscreteRead(&gpi, 1);	//read the input of the switches
+    	if(data == 0)
+    		rgb = 0x000000ff;	//0 = white
+    	else if(data == 1)
+    		rgb = 0x000000e0;	//1 = red
+    	else if(data == 2)
+    		rgb = 0x000000fc;	//2 = yellow
+    	else if(data == 3)
+    		rgb = 0x0000001c;	//3 = green
+    	else if(data == 4)
+    		rgb = 0x00000003;
+    	else
+    		rgb = 0x000000ff;
+
+    	data = rgb;
+    	XIOModule_DiscreteWrite(&gpo, 2, data);
+
+    	xil_printf("The coordinates or the block are %d,%d.\n\r", xpos, ypos);
+    }
+
+    return 0;
+}

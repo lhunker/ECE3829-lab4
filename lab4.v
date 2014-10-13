@@ -60,7 +60,7 @@ module lab4(
 		 // Status and control signals
 		 .RESET(reset));       // IN
 		 
-	seven_seg s1 (.in(16'b0/*segin*/), .seg(seg), .anodes(anode), .clk(clk_25m));
+	seven_seg s1 (.in(segin), .seg(seg), .anodes(anode), .clk(clk_25m));
 
 	wire [10:0] hcount;
 	wire [10:0] vcount;
@@ -68,9 +68,9 @@ module lab4(
 	vga_controller_640_60 vga1 (.rst(reset), .pixel_clk(clk_25m), .HS(HS), .VS(VS), .hcount(hcount), .vcount(vcount), .blank(blank));
 
 	xytovga pattrngen (
-    .x(5'b0), 
-    .y(4'b0), 
-    .color(8'b00000011), 
+    .x(xpos), 
+    .y(ypos), 
+    .color(rgb), 
     .blank(blank), 
     .rgbout({red, grn, blu}),
 	 .hcount(hcount),
