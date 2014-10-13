@@ -799,3 +799,74 @@ java.lang.NullPointerException
 	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
 	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2014-10-13 13:23:26.895 -----------------------------------------------
+eclipse.buildId=Release 14.7 Build SDK_P.20131013
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.help.base 4 0 2014-10-13 13:31:21.960
+!MESSAGE An error occured while pre-processing user assistance document "/com.xilinx.sdk.docs.cheatsheets/xml/profileSwApplication.xml" for search indexing
+!STACK 0
+java.lang.NullPointerException
+	at java.util.Hashtable.put(Unknown Source)
+	at java.util.Properties.setProperty(Unknown Source)
+	at org.eclipse.help.internal.dynamic.DocumentWriter.writeBytes(DocumentWriter.java:66)
+	at org.eclipse.help.internal.dynamic.DocumentWriter.writeBytes(DocumentWriter.java:53)
+	at org.eclipse.help.internal.dynamic.XMLProcessor.process(XMLProcessor.java:54)
+	at org.eclipse.help.search.SearchParticipantXML.preprocess(SearchParticipantXML.java:377)
+	at org.eclipse.help.search.SearchParticipantXML.addDocument(SearchParticipantXML.java:296)
+	at org.eclipse.help.internal.search.SearchIndex.addDocument(SearchIndex.java:218)
+	at org.eclipse.help.internal.search.IndexingOperation.addDocuments(IndexingOperation.java:252)
+	at org.eclipse.help.internal.search.IndexingOperation.addNewDocuments(IndexingOperation.java:159)
+	at org.eclipse.help.internal.search.IndexingOperation.execute(IndexingOperation.java:106)
+	at org.eclipse.help.internal.search.LocalSearchManager.updateIndex(LocalSearchManager.java:671)
+	at org.eclipse.help.internal.search.LocalSearchManager.ensureIndexUpdated(LocalSearchManager.java:645)
+	at org.eclipse.help.internal.search.LocalSearchManager.search(LocalSearchManager.java:590)
+	at org.eclipse.help.internal.search.SearchManager.searchLocal(SearchManager.java:103)
+	at org.eclipse.help.internal.search.SearchManager.search(SearchManager.java:94)
+	at org.eclipse.help.internal.search.SearchProgressMonitor$2.run(SearchProgressMonitor.java:162)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help documentation could not be indexed completely.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/tasks/sdk_t_multiproc_debugging.htm cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/tasks/sdk_t_program_flash.htm cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Exception occurred while adding document /com.xilinx.sdk.docs.cheatsheets/xml/profileSwApplication.xml to index.
+!STACK 0
+java.io.IOException: Read error
+	at java.io.FileInputStream.read(Native Method)
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager$RewindableInputStream.read(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at javax.xml.parsers.SAXParser.parse(Unknown Source)
+	at javax.xml.parsers.SAXParser.parse(Unknown Source)
+	at org.eclipse.help.search.SearchParticipantXML.addDocument(SearchParticipantXML.java:297)
+	at org.eclipse.help.internal.search.SearchIndex.addDocument(SearchIndex.java:218)
+	at org.eclipse.help.internal.search.IndexingOperation.addDocuments(IndexingOperation.java:252)
+	at org.eclipse.help.internal.search.IndexingOperation.addNewDocuments(IndexingOperation.java:159)
+	at org.eclipse.help.internal.search.IndexingOperation.execute(IndexingOperation.java:106)
+	at org.eclipse.help.internal.search.LocalSearchManager.updateIndex(LocalSearchManager.java:671)
+	at org.eclipse.help.internal.search.LocalSearchManager.ensureIndexUpdated(LocalSearchManager.java:645)
+	at org.eclipse.help.internal.search.LocalSearchManager.search(LocalSearchManager.java:590)
+	at org.eclipse.help.internal.search.SearchManager.searchLocal(SearchManager.java:103)
+	at org.eclipse.help.internal.search.SearchManager.search(SearchManager.java:94)
+	at org.eclipse.help.internal.search.SearchProgressMonitor$2.run(SearchProgressMonitor.java:162)
+	at java.lang.Thread.run(Unknown Source)
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/tasks/sdk_t_run_xmd.htm cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/sdk_t_run_profiler.htm cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/tasks/sdk_t_run_main.htm cannot be opened.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2014-10-13 13:31:24.349
+!MESSAGE Help document /com.xilinx.sdk.docs.user/tasks/sdk_t_run_init.htm cannot be opened.

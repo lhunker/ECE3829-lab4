@@ -10,7 +10,8 @@ src/helloworld.d: ../src/helloworld.c ../src/platform.h \
  ../../lab4_bsp/microblaze/include/xil_types.h \
  ../../lab4_bsp/microblaze/include/mb_interface.h \
  ../../lab4_bsp/microblaze/include/xil_printf.h \
- ../../lab4_bsp/microblaze/include/xio.h
+ ../../lab4_bsp/microblaze/include/xio.h \
+ ../../lab4_bsp/microblaze/include/xiomodule_l.h
 
 ../src/platform.h:
 
@@ -39,3 +40,5 @@ src/helloworld.d: ../src/helloworld.c ../src/platform.h \
 ../../lab4_bsp/microblaze/include/xil_printf.h:
 
 ../../lab4_bsp/microblaze/include/xio.h:
+
+../../lab4_bsp/microblaze/include/xiomodule_l.h:

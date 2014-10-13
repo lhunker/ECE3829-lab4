@@ -489,3 +489,105 @@ ELF file	: lab4.elf
 elfcheck passed.
 'Finished building: lab4.elf.elfcheck'
 ' '
+13:37:08 **** Clean-only build of configuration Debug for project lab4 ****
+make clean 
+rm -rf  ./src/helloworld.o ./src/platform.o  ./src/helloworld.d ./src/platform.d  lab4.elf.size  lab4.elf.elfcheck  lab4.elf
+' '
+13:37:08 **** Auto Build of configuration Debug for project lab4 ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab4_bsp/microblaze/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+'Finished building: ../src/helloworld.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab4_bsp/microblaze/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.d" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: lab4.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab4_bsp/microblaze/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab4.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab4.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab4.elf  |tee "lab4.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   9182	    348	   2100	  11630	   2d6e	lab4.elf
+'Finished building: lab4.elf.size'
+' '
+'Invoking: Xilinx ELF Check'
+elfcheck lab4.elf -hw ../../hw_platform_0/system.xml -pe microblaze  |tee "lab4.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../hw_platform_0/system.xml -pe microblaze
+lab4.elf 
+
+ELF file	: lab4.elf
+elfcheck passed.
+'Finished building: lab4.elf.elfcheck'
+' '
+13:40:28 **** Auto Build of configuration Debug for project lab4 ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab4_bsp/microblaze/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: lab4.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab4_bsp/microblaze/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab4.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab4.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab4.elf  |tee "lab4.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   9182	    348	   2100	  11630	   2d6e	lab4.elf
+'Finished building: lab4.elf.size'
+' '
+'Invoking: Xilinx ELF Check'
+elfcheck lab4.elf -hw ../../hw_platform_0/system.xml -pe microblaze  |tee "lab4.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../hw_platform_0/system.xml -pe microblaze
+lab4.elf 
+
+ELF file	: lab4.elf
+elfcheck passed.
+'Finished building: lab4.elf.elfcheck'
+' '
+13:47:03 **** Auto Build of configuration Debug for project lab4 ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../lab4_bsp/microblaze/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: lab4.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab4_bsp/microblaze/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab4.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab4.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab4.elf  |tee "lab4.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   9214	    348	   2100	  11662	   2d8e	lab4.elf
+'Finished building: lab4.elf.size'
+' '
+'Invoking: Xilinx ELF Check'
+elfcheck lab4.elf -hw ../../hw_platform_0/system.xml -pe microblaze  |tee "lab4.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../hw_platform_0/system.xml -pe microblaze
+lab4.elf 
+
+ELF file	: lab4.elf
+elfcheck passed.
+'Finished building: lab4.elf.elfcheck'
+' '
